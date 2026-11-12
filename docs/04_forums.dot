@@ -1,0 +1,16 @@
+digraph ERD {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.8", splines=polyline, fontname="DejaVu Sans", fontsize=20, labelloc=t, label="Forum threads, posts and votes\nPK = primary key; FK = foreign key; UQ = unique; ? = optional\nComposite PKs and constraints are listed in the guide and SQL"];
+node [shape=plain, fontname="DejaVu Sans"];
+edge [fontname="DejaVu Sans",fontsize=10,color="#718096",arrowsize=0.7];
+users [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD COLSPAN="2" BGCOLOR="#12374a"><FONT COLOR="white"><B>users</B></FONT></TD></TR><TR><TD ALIGN="LEFT">user_id</TD><TD ALIGN="LEFT">INT PK</TD></TR></TABLE>>];
+movies [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD COLSPAN="2" BGCOLOR="#12374a"><FONT COLOR="white"><B>movies</B></FONT></TD></TR><TR><TD ALIGN="LEFT">movie_id</TD><TD ALIGN="LEFT">INT PK</TD></TR></TABLE>>];
+forums [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD COLSPAN="2" BGCOLOR="#12374a"><FONT COLOR="white"><B>forums</B></FONT></TD></TR><TR><TD ALIGN="LEFT">forum_id</TD><TD ALIGN="LEFT">INT PK</TD></TR><TR><TD ALIGN="LEFT">movie_id</TD><TD ALIGN="LEFT">INT FK,?</TD></TR><TR><TD ALIGN="LEFT">user_id</TD><TD ALIGN="LEFT">INT FK</TD></TR><TR><TD ALIGN="LEFT">forum_title</TD><TD ALIGN="LEFT">VARCHAR(200) </TD></TR><TR><TD ALIGN="LEFT">active</TD><TD ALIGN="LEFT">BOOLEAN </TD></TR><TR><TD ALIGN="LEFT">created_at</TD><TD ALIGN="LEFT">TIMESTAMP </TD></TR></TABLE>>];
+forum_posts [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD COLSPAN="2" BGCOLOR="#12374a"><FONT COLOR="white"><B>forum_posts</B></FONT></TD></TR><TR><TD ALIGN="LEFT">post_id</TD><TD ALIGN="LEFT">INT PK</TD></TR><TR><TD ALIGN="LEFT">forum_id</TD><TD ALIGN="LEFT">INT FK</TD></TR><TR><TD ALIGN="LEFT">user_id</TD><TD ALIGN="LEFT">INT FK</TD></TR><TR><TD ALIGN="LEFT">post_text</TD><TD ALIGN="LEFT">TEXT </TD></TR><TR><TD ALIGN="LEFT">active</TD><TD ALIGN="LEFT">BOOLEAN </TD></TR><TR><TD ALIGN="LEFT">created_at</TD><TD ALIGN="LEFT">TIMESTAMP </TD></TR><TR><TD ALIGN="LEFT">updated_at</TD><TD ALIGN="LEFT">TIMESTAMP </TD></TR></TABLE>>];
+forum_votes [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD COLSPAN="2" BGCOLOR="#12374a"><FONT COLOR="white"><B>forum_votes</B></FONT></TD></TR><TR><TD ALIGN="LEFT">forum_id</TD><TD ALIGN="LEFT">INT PK,FK</TD></TR><TR><TD ALIGN="LEFT">user_id</TD><TD ALIGN="LEFT">INT PK,FK</TD></TR><TR><TD ALIGN="LEFT">vote_value</TD><TD ALIGN="LEFT">TINYINT </TD></TR></TABLE>>];
+movies -> forums [dir=none,taillabel="0..1",headlabel="0..many",labeldistance=2.5];
+users -> forums [dir=none,taillabel="1",headlabel="0..many",labeldistance=2.5];
+forums -> forum_posts [dir=none,taillabel="1",headlabel="0..many",labeldistance=2.5];
+users -> forum_posts [dir=none,taillabel="1",headlabel="0..many",labeldistance=2.5];
+forums -> forum_votes [dir=none,taillabel="1",headlabel="0..many",labeldistance=2.5];
+users -> forum_votes [dir=none,taillabel="1",headlabel="0..many",labeldistance=2.5];
+}

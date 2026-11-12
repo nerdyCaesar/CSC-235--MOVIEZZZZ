@@ -1,0 +1,13 @@
+digraph ERD {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.8", splines=polyline, fontname="DejaVu Sans", fontsize=20, labelloc=t, label="Reviews and favorites\nPK = primary key; FK = foreign key; UQ = unique; ? = optional\nComposite PKs and constraints are listed in the guide and SQL"];
+node [shape=plain, fontname="DejaVu Sans"];
+edge [fontname="DejaVu Sans",fontsize=10,color="#718096",arrowsize=0.7];
+users [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD COLSPAN="2" BGCOLOR="#12374a"><FONT COLOR="white"><B>users</B></FONT></TD></TR><TR><TD ALIGN="LEFT">user_id</TD><TD ALIGN="LEFT">INT PK</TD></TR></TABLE>>];
+movies [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD COLSPAN="2" BGCOLOR="#12374a"><FONT COLOR="white"><B>movies</B></FONT></TD></TR><TR><TD ALIGN="LEFT">movie_id</TD><TD ALIGN="LEFT">INT PK</TD></TR></TABLE>>];
+reviews [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD COLSPAN="2" BGCOLOR="#12374a"><FONT COLOR="white"><B>reviews</B></FONT></TD></TR><TR><TD ALIGN="LEFT">review_id</TD><TD ALIGN="LEFT">INT PK</TD></TR><TR><TD ALIGN="LEFT">movie_id</TD><TD ALIGN="LEFT">INT FK</TD></TR><TR><TD ALIGN="LEFT">user_id</TD><TD ALIGN="LEFT">INT FK</TD></TR><TR><TD ALIGN="LEFT">stars</TD><TD ALIGN="LEFT">TINYINT </TD></TR><TR><TD ALIGN="LEFT">review_text</TD><TD ALIGN="LEFT">TEXT ?</TD></TR><TR><TD ALIGN="LEFT">flagged</TD><TD ALIGN="LEFT">BOOLEAN </TD></TR><TR><TD ALIGN="LEFT">active</TD><TD ALIGN="LEFT">BOOLEAN </TD></TR><TR><TD ALIGN="LEFT">created_at</TD><TD ALIGN="LEFT">TIMESTAMP </TD></TR><TR><TD ALIGN="LEFT">updated_at</TD><TD ALIGN="LEFT">TIMESTAMP </TD></TR></TABLE>>];
+favorites [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD COLSPAN="2" BGCOLOR="#12374a"><FONT COLOR="white"><B>favorites</B></FONT></TD></TR><TR><TD ALIGN="LEFT">user_id</TD><TD ALIGN="LEFT">INT PK,FK</TD></TR><TR><TD ALIGN="LEFT">movie_id</TD><TD ALIGN="LEFT">INT PK,FK</TD></TR><TR><TD ALIGN="LEFT">saved_at</TD><TD ALIGN="LEFT">TIMESTAMP </TD></TR></TABLE>>];
+movies -> reviews [dir=none,taillabel="1",headlabel="0..many",labeldistance=2.5];
+users -> reviews [dir=none,taillabel="1",headlabel="0..many",labeldistance=2.5];
+users -> favorites [dir=none,taillabel="1",headlabel="0..many",labeldistance=2.5];
+movies -> favorites [dir=none,taillabel="1",headlabel="0..many",labeldistance=2.5];
+}

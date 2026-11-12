@@ -1,0 +1,14 @@
+moviezzz/app/config.example.php: syntax tree parsed
+moviezzz/app/bootstrap.php: syntax tree parsed
+moviezzz/tests/check_database.php: syntax tree parsed
+moviezzz/public/logout.php: syntax tree parsed
+moviezzz/public/index.php: syntax tree parsed
+moviezzz/public/movie.php: syntax tree parsed
+moviezzz/public/register.php: syntax tree parsed
+moviezzz/public/login.php: syntax tree parsed
+moviezzz/sql/01_schema.sql: 20 MySQL statements parsed
+moviezzz/sql/03_practice_queries.sql: 6 MySQL statements parsed
+moviezzz/sql/02_seed.sql: 11 MySQL statements parsed
+
+Static parsing only. PHP execution, actual MySQL/MariaDB import and browser integration were not run.
+Run tests/check_database.php and tests/MANUAL_CHECKS.md in XAMPP.
