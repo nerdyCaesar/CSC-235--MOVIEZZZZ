@@ -9,6 +9,7 @@ Prepared for Team N from your uploaded `Presentation.pptx` and the professor's H
 3. Click **Databases**. Create **moviezzz** with collation **utf8mb4_unicode_ci**. Select it in the left sidebar. Keep the professor's HR_Data database separate.
 4. Open **Import**, choose `sql/01_schema.sql`, and run it. Alternatively paste that file into the SQL tab, just as in your professor's sample. Run this only on a new, empty database.
 5. Import `sql/02_seed.sql` next. Expected result: **18 tables + 1 view**, six fictional movies, and no user accounts yet. Sample data is intentionally fictional so it does not pretend to be verified movie metadata.
+   *Optional:* then import `sql/04_movie_catalog.sql` once to add about 3,200 real movies (with directors, cast and summaries; mostly up to 2010). It only adds rows, so run it on a database that has just the seed data.
 6. Place the entire `moviezzz` folder in your XAMPP `htdocs` directory. A common Mac location is `/Applications/XAMPP/xamppfiles/htdocs/`; confirm the location for your installation.
 7. Copy `app/config.example.php` to `app/config.local.php`. Set your MySQL host, port, database name, username and password. The example's root/blank-password values are placeholders for a local XAMPP installation, not credentials verified on your Mac.
 8. Open **http://localhost/moviezzz/public/**. If your Apache uses another port, include it in the URL. You must use the URL, not double-click a PHP file.
@@ -26,6 +27,7 @@ If you already have a populated Moviezzz database, stop before importing this sc
 | `sql/01_schema.sql` | Creates all tables, keys, checks, indexes and the rating view |
 | `sql/02_seed.sql` | Creates fictional sample catalog records and the member/admin roles |
 | `sql/03_practice_queries.sql` | Read-only queries you can run in phpMyAdmin |
+| `sql/04_movie_catalog.sql` | Optional real-movie catalog (~3,200 films from public datasets; sources listed in the file) |
 | `app/config.example.php` | Database settings template |
 | `app/bootstrap.php` | PDO connection, sessions, prepared queries, output escaping and form tokens |
 | `public/index.php` | Search, genre, runtime and minimum-rating filters, plus favorites view |
